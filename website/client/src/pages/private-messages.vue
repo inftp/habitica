@@ -129,6 +129,7 @@
           ref="chatscroll"
           class="message-scroll"
           :chat="selectedConversationMessages"
+          :conversationOpponentUser="selectedConversation.userStyles"
           :can-load-more="canLoadMore"
           :is-loading="messagesLoading"
           @message-removed="messageRemoved"
@@ -299,8 +300,11 @@
     background-image: url(~@/assets/svg/for-css/search_gray.svg) !important;
     padding-left: 40px;
 
-    color: $gray-200 !important;
     height: 40px;
+  }
+
+  .input-search::placeholder {
+    color: $gray-200 !important;
   }
 
   .selected-conversion {
