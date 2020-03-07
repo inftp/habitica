@@ -372,13 +372,6 @@ export default function scoreTask (options = {}, req = {}, analytics) {
   if (!user.achievements.completedTask && cron === false && direction === 'up' && user.addAchievement) {
     user.addAchievement('completedTask');
     checkOnboardingStatus(user, analytics);
-  } else if (
-    user.achievements.completedTask
-    && cron === false
-    && direction === 'up'
-    && size(user.items.eggs) < 1
-    && size(user.items.hatchingPotions) < 1) {
-    firstDrops(user);
   }
 
   return [delta];

@@ -377,10 +377,11 @@ async function scoreTask (user, task, direction, req, res) {
   }
   const wasCompleted = task.completed;
 
+  const firstTask = !user.achievements.completedTask;
   const [delta] = shared.ops.scoreTask({ task, user, direction }, req);
   // Drop system (don't run on the client, as it would only be discarded since
   // ops are sent to the API, not the results)
-  if (direction === 'up') shared.fns.randomDrop(user, { task, delta }, req, res.analytics);
+  if (direction === 'up' && !firstTask) shared.fns.randomDrop(user, { task, delta }, req, res.analytics);
 
   // If a todo was completed or uncompleted move it in or out of the user.tasksOrder.todos list
   // TODO move to common code?
